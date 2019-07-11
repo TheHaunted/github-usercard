@@ -4,7 +4,6 @@
 */
 axios.get('https://api.github.com/users/thehaunted')
     .then(resp => {
-      console.log(resp.data);
       let user = resp.data;
       createCard(user);
     })
@@ -35,11 +34,11 @@ const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigkne
 followersArray.forEach(user => {
   axios.get(`https://api.github.com/users/${user}`)
     .then(resp => {
-      console.log(resp.data);
       let user = resp.data;
       createCard(user);
     })
-})
+    .catch(error => console.log(error.message));
+});
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
